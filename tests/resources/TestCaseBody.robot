@@ -62,7 +62,6 @@ Body Of Scan A Tag In The Repo
     Sign In Harbor  ${HARBOR_URL}  user023  Test1@34
     Create An New Project And Go Into Project  project${d}
     Push Image  ${ip}  user023  Test1@34  project${d}  ${image_argument}:${tag_argument}
-    Go Into Project  project${d}
     Go Into Repo  project${d}/${image_argument}
     Scan Repo  ${tag_argument}  Succeed
     Scan Result Should Display In List Row  ${tag_argument}  is_no_vulerabilty=${is_no_vulerabilty}
@@ -76,8 +75,7 @@ Body Of Scan Image With Empty Vul
     ${tag}=  Set Variable  ${tag_argument}
     Push Image  ${ip}  ${HARBOR_ADMIN}  ${HARBOR_PASSWORD}  library  ${image_argument}:${tag_argument}
     Sign In Harbor  ${HARBOR_URL}  ${HARBOR_ADMIN}  ${HARBOR_PASSWORD}
-    Go Into Project  library
-    Go Into Repo  ${image_argument}
+    Go Into Repo  library/${image_argument}
     Scan Repo  ${tag}  Succeed
     Move To Summary Chart
     Scan Result Should Display In List Row  ${tag}  is_no_vulerabilty=${true}
@@ -91,9 +89,7 @@ Body Of Manual Scan All
     Sign In Harbor  ${HARBOR_URL}  ${HARBOR_ADMIN}  ${HARBOR_PASSWORD}
     Switch To Vulnerability Page
     Trigger Scan Now And Wait Until The Result Appears
-    Navigate To Projects
-    Go Into Project  library
-    Go Into Repo  redis
+    Go Into Repo  library/redis
     Scan Result Should Display In List Row  ${sha256}
     View Repo Scan Details  @{vulnerability_levels}
     Close Browser
@@ -106,7 +102,6 @@ Body Of View Scan Results
     Sign In Harbor  ${HARBOR_URL}  user025  Test1@34
     Create An New Project And Go Into Project  project${d}
     Push Image  ${ip}  user025  Test1@34  project${d}  tomcat
-    Go Into Project  project${d}
     Go Into Repo  project${d}/tomcat
     Scan Repo  latest  Succeed
     Scan Result Should Display In List Row  latest
@@ -122,9 +117,7 @@ Body Of Scan Image On Push
     Goto Project Config
     Enable Scan On Push
     Push Image  ${ip}  ${HARBOR_ADMIN}  ${HARBOR_PASSWORD}  project${d}  memcached
-    Navigate To Projects
-    Go Into Project  project${d}
-    Go Into Repo  memcached
+    Go Into Repo  project${d}/memcached
     Scan Result Should Display In List Row  latest
     View Repo Scan Details  @{vulnerability_levels}
     Close Browser
@@ -267,7 +260,6 @@ Body Of Verfiy System Level CVE Allowlist
     Go Into Project  project${d}
     Set Vulnerabilty Serverity  2
     Cannot Pull Image  ${ip}    ${signin_user}    ${signin_pwd}    project${d}    ${image}    tag=${sha256}  err_msg=cannot be pulled due to configured policy
-    Go Into Project  project${d}
     Go Into Repo  project${d}/${image}
     Scan Repo  ${sha256}  Succeed
     Logout Harbor
@@ -303,7 +295,6 @@ Body Of Verfiy Project Level CVE Allowlist
     Go Into Project  project${d}
     Set Vulnerabilty Serverity  2
     Cannot Pull Image  ${ip}    ${signin_user}    ${signin_pwd}    project${d}    ${image}    tag=${sha256}
-    Go Into Project  project${d}
     Go Into Repo  project${d}/${image}
     Scan Repo  ${sha256}  Succeed
     Go Into Project  project${d}
@@ -333,7 +324,6 @@ Body Of Verfiy Project Level CVE Allowlist By Quick Way of Add System
     Push Image    ${ip}    ${signin_user}    ${signin_pwd}    project${d}    ${image}    sha256=${sha256}
     Go Into Project  project${d}
     Set Vulnerabilty Serverity  2
-    Go Into Project  project${d}
     Go Into Repo  project${d}/${image}
     Scan Repo  ${sha256}  Succeed
     Pull Image    ${ip}    ${signin_user}    ${signin_pwd}    project${d}    ${image}    tag=${sha256}
@@ -508,7 +498,6 @@ Verify Webhook By Artifact Deleted Event
     Switch Window  ${webhook_handle}
     Delete All Requests
     Switch Window  ${harbor_handle}
-    Go Into Project  ${project_name}
     Go Into Repo  ${project_name}/${image}
     @{tag_list}  Create List  ${tag}
     Multi-delete Artifact  @{tag_list}
@@ -521,7 +510,6 @@ Verify Webhook By Scanning Finished Event
     Switch Window  ${webhook_handle}
     Delete All Requests
     Switch Window  ${harbor_handle}
-    Go Into Project  ${project_name}
     Go Into Repo  ${project_name}/${image}
     Scan Repo  ${tag}  Succeed
     Switch Window  ${webhook_handle}

@@ -44,9 +44,6 @@ Test Case - Push ORAS and Display
     ${tag}=  Set Variable  1.0.0
     Retry Keyword N Times When Error  5  Oras Push  ${ip}  user010  Test1@34  test${d}  ${repo_name}  ${tag}
 
-    Go Into Project  test${d}
-    Wait Until Page Contains  test${d}/${repo_name}
-
     Go Into Repo  test${d}/${repo_name}
     Wait Until Page Contains  ${tag}
     Close Browser
@@ -89,13 +86,9 @@ Test Case - Push CNAB Bundle and Display
     ${target}=  Set Variable  ${ip}/test${d}/cnab${d}:cnab_tag${d}
     Retry Keyword N Times When Error  5  CNAB Push Bundle  ${ip}  ${user}  ${pwd}  ${target}  ./tests/robot-cases/Group0-Util/bundle.json  ${ip}  test${d}  ${index1}  ${index2}
 
-    Go Into Project  test${d}
-    Wait Until Page Contains  test${d}/cnab${d}
-
     Go Into Repo  test${d}/cnab${d}
     Wait Until Page Contains  cnab_tag${d}
-    Go Into Project  test${d}
-    Wait Until Page Contains  test${d}/cnab${d}
+
     Go Into Repo  test${d}/cnab${d}
     Go Into Index And Contain Artifacts  cnab_tag${d}  total_artifact_count=3  archive_count=2
     Close Browser
@@ -118,8 +111,7 @@ Test Case - Repo Size
     ${d}=  Get Current Date    result_format=%m%s
     Sign In Harbor  ${HARBOR_URL}  ${HARBOR_ADMIN}  ${HARBOR_PASSWORD}
     Push Image With Tag  ${ip}  ${HARBOR_ADMIN}  ${HARBOR_PASSWORD}  library  alpine  2.6  2.6
-    Go Into Project  library
-    Go Into Repo  alpine
+    Go Into Repo  library/alpine
     Wait Until Page Contains  1.92MiB
     Close Browser
 
@@ -361,7 +353,6 @@ Test Case - Edit Repo Info
     Sign In Harbor  ${HARBOR_URL}  user011  Test1@34
     Create An New Project And Go Into Project  project${d}
     Push Image  ${ip}  user011  Test1@34  project${d}  hello-world
-    Go Into Project  project${d}
     Go Into Repo  project${d}/hello-world
     Edit Repo Info
     Close Browser
@@ -412,8 +403,7 @@ Test Case - Delete Multi Artifacts
     Create An New Project And Go Into Project  project${d}
     Push Image With Tag  ${ip}  user014  Test1@34  project${d}  redis  3.2.10-alpine  3.2.10-alpine
     Push Image With Tag  ${ip}  user014  Test1@34  project${d}  redis  4.0.7-alpine  4.0.7-alpine
-    Go Into Project  project${d}
-    Go Into Repo  redis
+    Go Into Repo  project${d}/redis
     @{tag_list}  Create List  3.2.10-alpine  4.0.7-alpine
     Multi-delete Artifact  @{tag_list}
     # Verify
@@ -475,7 +465,6 @@ Test Case - Project Admin Add Labels To Repo
     Create New Labels  label111
     Create New Labels  label22
     Sleep  2
-    Switch To Project Repo
     Go Into Repo  project${d}/redis
     Add Labels To Tag  3.2.10-alpine  label111
     Add Labels To Tag  4.0.7-alpine  label22
@@ -514,7 +503,6 @@ Test Case - Copy A Image
     Go Into Repo  project${random_num1}/redis
     Copy Image  ${image_tag}  project${random_num1}${random_num2}  ${target_image_name}
     Retry Wait Element Not Visible  ${repo_retag_confirm_dlg}
-    Navigate To Projects
     Go Into Project  project${random_num1}${random_num2}
     Sleep  1
     Page Should Contain  ${target_image_name}
@@ -548,7 +536,6 @@ Test Case - Copy A Image And Accessory
     Copy Image  ${tag}  ${target_project}  ${image}
     Retry Wait Until Page Contains  Copy artifact successfully
 
-    Retry Double Keywords When Error  Go Into Project  ${target_project}  Retry Wait Until Page Contains  ${image}
     Retry Double Keywords When Error  Go Into Repo  ${target_project}/${image}  Retry Wait Until Page Contains Element  //clr-dg-row[contains(.,${tag})]
     Should Be Signed By Cosign  ${tag}
     Close Browser
@@ -607,11 +594,9 @@ Test Case - Project Quotas Control Under Copy
     Create An New Project And Go Into Project  project_b_${d}  storage_quota=${storage_quota}  storage_quota_unit=${storage_quota_unit}
     Push Image With Tag  ${ip}  ${HARBOR_ADMIN}  ${HARBOR_PASSWORD}  project_a_${d}  ${image_a}  tag=${image_a_ver}  tag1=${image_a_ver}
     Push Image With Tag  ${ip}  ${HARBOR_ADMIN}  ${HARBOR_PASSWORD}  project_a_${d}  ${image_b}  tag=${image_b_ver}  tag1=${image_b_ver}
-    Go Into Project  project_a_${d}
     Go Into Repo  project_a_${d}/${image_a}
     Copy Image  ${image_a_ver}  project_b_${d}  ${image_a}
     Retry Wait Element Not Visible  ${repo_retag_confirm_dlg}
-    Go Into Project  project_a_${d}
     Go Into Repo  project_a_${d}/${image_b}
     Copy Image  ${image_b_ver}  project_b_${d}  ${image_b}
     Retry Wait Element Not Visible  ${repo_retag_confirm_dlg}
@@ -628,8 +613,7 @@ Test Case - Tag CRUD
     ${d}=    Get Current Date    result_format=%m%s
     Create An New Project And Go Into Project  project${d}
     Push Image With Tag  ${ip}  ${HARBOR_ADMIN}  ${HARBOR_PASSWORD}  project${d}  hello-world  latest
-    Switch To Project Repo
-    Go Into Repo   hello-world
+    Go Into Repo   project${d}/hello-world
     Go Into Artifact   latest
     Should Contain Tag   latest
     # add more than one tag
@@ -715,14 +699,9 @@ Test Case - Push Docker Manifest Index and Display
 
     Docker Push Index  ${ip}  user010  Test1@34  ${ip}/test${d}/index${d}:index_tag${d}  ${ip}/test${d}/${image_a}:${image_a_ver}  ${ip}/test${d}/${image_b}:${image_b_ver}
 
-    Go Into Project  test${d}
-    Wait Until Page Contains  test${d}/index${d}
-
     Go Into Repo  test${d}/index${d}
     Wait Until Page Contains  index_tag${d}
 
-    Go Into Project  test${d}
-    Wait Until Page Contains  test${d}/index${d}
     Go Into Repo  test${d}/index${d}
     Go Into Index And Contain Artifacts  index_tag${d}  total_artifact_count=2
     Close Browser
@@ -740,13 +719,8 @@ Test Case - Push Helm Chart and Display
 
     Retry Action Keyword  Helm Chart Push  ${ip}  user010  Test1@34  ${chart_file}  ${archive}  test${d}  ${repo_name}  ${verion}
 
-    Go Into Project  test${d}
-    Wait Until Page Contains  test${d}/${repo_name}
-
     Go Into Repo  test${d}/${repo_name}
     Wait Until Page Contains  ${repo_name}
-    Go Into Project  test${d}
-    Wait Until Page Contains  test${d}/${repo_name}
     Retry Double Keywords When Error  Go Into Repo  test${d}/${repo_name}  Page Should Contain Element  ${tag_table_column_vulnerabilities}
     Close Browser
 
@@ -766,7 +740,6 @@ Test Case - Can Not Copy Image In ReadOnly Mode
     Go Into Repo  project${random_num1}/redis
     Copy Image  ${image_tag}  project${random_num1}${random_num2}  ${target_image_name}
     Retry Wait Element Not Visible  ${repo_retag_confirm_dlg}
-    Navigate To Projects
     Go Into Project  project${random_num1}${random_num2}  has_image=${false}
     Sleep  10
     Go Into Project  project${random_num1}${random_num2}  has_image=${false}
@@ -872,7 +845,6 @@ Test Case - Cosign And Cosign Deployment Security Policy
     Content Cosign Deployment security Be Selected
 
     Push Image With Tag  ${ip}  ${user}  ${pwd}  project${d}  ${image}  ${tag}
-    Go Into Project  project${d}
     Retry Double Keywords When Error  Go Into Repo  project${d}/${image}  Should Not Be Signed By Cosign  ${tag}
     Cannot Pull Image  ${ip}  ${user}  ${pwd}  project${d}  ${image}:${tag}  err_msg=The image is not signed in Cosign.
     Cosign Generate Key Pair
@@ -905,8 +877,7 @@ Test Case - Audit Log And Purge
     Push Image With Tag  ${ip}  ${user}  ${pwd}  project${d}  ${image}  ${tag1}  ${tag1}
     Clean All Local Images
     Verify Log  ${user}  project${d}/${image}:${tag1}  artifact  create
-    Go Into Project  project${d}
-    Go Into Repo  ${image}
+    Go Into Repo  project${d}/${image}
     Go Into Artifact  ${tag1}
     # create tag
     Add A New Tag   ${tag2}
@@ -920,7 +891,6 @@ Test Case - Audit Log And Purge
     Docker Pull  ${ip}/project${d}/${image}:${tag1}
     Docker Logout  ${ip}
     Verify Log  ${user}  project${d}/${image}:${sha256}  artifact  pull
-    Go Into Project  project${d}
     Go Into Repo  project${d}/${image}
     # delete artifact
     @{tag_list}  Create List  ${tag1}
@@ -969,7 +939,6 @@ Test Case - Audit Log Forward
     Verify Log In File  ${HARBOR_ADMIN}  project${d}/${image}:${tag1}  artifact  create
     # Enable Skip Audit Log Database
     Enable Skip Audit Log Database
-    Go Into Project  project${d}
     Go Into Repo  ${image}
     Go Into Artifact  ${tag1}
     # create tag
@@ -980,7 +949,6 @@ Test Case - Audit Log Forward
     Set Audit Log Forward  ${null}  Configuration has been successfully saved.
     Retry Wait Element Should Be Disabled  ${skip_audit_log_database_checkbox}
     Checkbox Should Not Be Selected  ${skip_audit_log_database_checkbox}
-    Go Into Project  project${d}
     Go Into Repo  ${image}
     Go Into Artifact  ${tag1}
     # delete tag

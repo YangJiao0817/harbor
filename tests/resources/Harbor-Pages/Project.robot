@@ -19,6 +19,13 @@ Resource  ../../resources/Util.robot
 *** Variables ***
 
 *** Keywords ***
+Go Into Project
+    [Arguments]  ${project}  ${has_image}=${true}
+    Retry Double Keywords When Error  Retry Text Input  ${search_input}  ${project}  Wait Until Element Is Visible And Enabled  //list-project-ro//a[text()='${project}']
+    Retry Double Keywords When Error  Retry Link Click  //list-project-ro//a[text()='${project}']  Wait Until Element Is Visible  //project-detail//h1//span[text()='${project}']
+    Run Keyword If  ${has_image}==${false}  Wait Until Element Is Visible And Enabled  //clr-dg-placeholder[contains(.,\"We couldn\'t find any repositories!\")]
+    ...  ELSE  Wait Until Element Is Visible And Enabled  //project-detail//hbr-repository-gridview//clr-dg-cell[contains(.,'${project}/')]
+
 Create An New Project And Go Into Project
     [Arguments]  ${projectname}  ${public}=false  ${count_quota}=${null}  ${storage_quota}=${null}  ${storage_quota_unit}=${null}  ${proxy_cache}=${false}  ${registry}=${null}
     Navigate To Projects
@@ -26,7 +33,6 @@ Create An New Project And Go Into Project
         ${out}  Run Keyword And Ignore Error  Retry Button Click  xpath=${create_project_button_xpath}
         Log All  Return value is ${out[0]}
         Exit For Loop If  '${out[0]}'=='PASS'
-        Sleep  1
     END
     Log To Console  Project Name: ${projectname}
     Retry Text Input  xpath=${project_name_xpath}  ${projectname}
@@ -36,7 +42,6 @@ Create An New Project And Go Into Project
     Run Keyword If  '${storage_quota}'!='${null}'  Input Storage Quota  ${storage_quota}  ${storage_quota_unit}
     Run Keyword If  '${proxy_cache}' == '${true}'  Run Keywords  Retry Element Click  ${project_proxy_cache_switcher_xpath}  AND  Retry Element Click  ${project_registry_select_id}  AND  Retry Element Click  xpath=//select[@id='registry']//option[contains(.,'${registry}')]
     Retry Double Keywords When Error  Retry Element Click  ${create_project_OK_button_xpath}  Retry Wait Until Page Not Contains Element  ${create_project_OK_button_xpath}
-    Sleep  2
     Go Into Project  ${projectname}  has_image=${false}
 
 Create An New Project With New User
@@ -209,38 +214,10 @@ Do Log Advanced Search
     ${rc} =  Get Element Count  //audit-log//clr-dg-row
     Should Be Equal As Integers  ${rc}  1
 
-Retry Click Repo Name
-    [Arguments]  ${repo_name_element}
-    FOR  ${n}  IN RANGE  1  2
-        ${out}  Run Keyword And Ignore Error  Retry Double Keywords When Error  Retry Element Click  ${repo_name_element}   Retry Wait Element  ${tag_table_column_vulnerabilities}
-        Exit For Loop If  '${out[0]}'=='PASS'
-    END
-    Should Be Equal As Strings  '${out[0]}'  'PASS'
-
-    FOR  ${n}  IN RANGE  1  2
-        ${out}  Run Keyword And Ignore Error  Retry Wait Until Page Not Contains Element  ${repo_list_spinner}
-        Exit For Loop If  '${out[0]}'=='PASS'
-    END
-    Should Be Equal As Strings  '${out[0]}'  'PASS'
-
 Go Into Repo
-    [Arguments]  ${repoName}
-    Sleep  2
-    Retry Wait Until Page Not Contains Element  ${repo_list_spinner}
-    ${repo_name_element}=  Set Variable  xpath=//clr-dg-cell[contains(.,'${repoName}')]/a
-    FOR  ${n}  IN RANGE  1  3
-        Retry Element Click  ${repo_search_icon}
-        Retry Clear Element Text  ${repo_search_input}
-        Retry Text Input  ${repo_search_input}  ${repoName}
-        ${out}  Run Keyword And Ignore Error  Retry Wait Until Page Contains Element  ${repo_name_element}
-        Sleep  2
-        Run Keyword If  '${out[0]}'=='FAIL'  Reload Page
-        Continue For Loop If  '${out[0]}'=='FAIL'
-        Retry Click Repo Name  ${repo_name_element}
-        Sleep  2
-        Exit For Loop
-    END
-    Should Be Equal As Strings  '${out[0]}'  'PASS'
+    [Arguments]  ${repo_name}
+    Retry Double Keywords When Error  Retry Text Input  ${search_input}  ${repo_name}  Wait Until Element Is Visible And Enabled  //list-repository-ro//a[text()='${repo_name}']
+    Retry Double Keywords When Error  Retry Link Click  //list-repository-ro//a[text()='${repo_name}']  Wait Until Element Is Visible  //artifact-list-page//h2[text()=' ${repo_name} ']
 
 Click Index Achieve
     [Arguments]  ${tag_name}

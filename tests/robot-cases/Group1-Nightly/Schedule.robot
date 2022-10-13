@@ -48,13 +48,11 @@ Test Case - Proxy Cache
     Pull Image  ${ip}  ${test_user}  ${test_pwd}  project${d}  ${user_namespace}/${manifest_index}  tag=${manifest_tag}
     Log To Console  Start to Sleep 3 minitues......
     Sleep  180
-    Go Into Project  project${d}
     Go Into Repo  project${d}/${user_namespace}/${image}
 
     FOR  ${idx}  IN RANGE  0  15
         Log All  Checking manifest ${idx} round......
         Sleep  60
-        Go Into Project  project${d}
         ${repo_out}=  Run Keyword And Ignore Error  Go Into Repo  project${d}/${user_namespace}/${manifest_index}
         Continue For Loop If  '${repo_out[0]}'=='FAIL'
         ${artifact_out}=  Run Keyword And Ignore Error  Go Into Index And Contain Artifacts  ${manifest_tag}  total_artifact_count=1
@@ -134,13 +132,11 @@ Test Case - Scan Schedule Job
     # After scan custom schedule is set, image should stay in unscanned status.
     Log To Console  Sleep for 300 seconds......
     Sleep  180
-    Go Into Project  ${project_name}
     Go Into Repo  ${project_name}/${image}
     Retry Wait Until Page Contains Element  ${not_scanned_icon}
 
     Log To Console  Sleep for 500 seconds......
     Sleep  500
-    Go Into Project  ${project_name}
     Go Into Repo  ${project_name}/${image}
     Scan Result Should Display In List Row  ${sha256}
     View Repo Scan Details  Critical  High
@@ -175,10 +171,8 @@ Test Case - Replication Schedule Job
     # After replication schedule is set, project should contain 2 images.
     Log To Console  Sleep for 720 seconds......
     Sleep  720
-    Go Into Project  ${project_name}
     Go Into Repo  ${project_name}/${image_a}
     Artifact Exist  ${tag_a}
-    Go Into Project  ${project_name}
     Go Into Repo  ${project_name}/${image_b}
     Artifact Exist  ${tag_b}
 
@@ -190,10 +184,8 @@ Test Case - Replication Schedule Job
     # After replication schedule is set, project should contain 2 images.
     Log To Console  Sleep for 600 seconds......
     Sleep  600
-    Go Into Project  ${project_name}
     Go Into Repo  ${project_name}/${image_a}
     Artifact Exist  ${tag_a}
-    Go Into Project  ${project_name}
     Go Into Repo  ${project_name}/${image_b}
     Artifact Exist  ${tag_b}
     Close Browser

@@ -19,28 +19,6 @@ Resource  ../../resources/Util.robot
 *** Variables ***
 
 *** Keywords ***
-Go Into Project
-    [Arguments]  ${project}  ${has_image}=${true}
-    Retry Keyword N Times When Error  5  Clear Search Input And Go Into Project  ${project}  ${has_image}
-
-Clear Search Input And Go Into Project
-    [Arguments]  ${project}  ${has_image}
-    # Close prompt in header
-    Sleep  2
-    #go To  ${url}
-    Reload Page
-    Sleep  2
-    # Clear Search Input
-    Retry Element Click  xpath=//harbor-app/harbor-shell/clr-main-container/navigator/clr-header/div[1]/a/span
-    Sleep  2
-    Retry Text Input  ${search_input}  ${project}
-    Sleep  2
-    # Go Into Project
-    ${out}  Run Keyword If  ${has_image}==${false}  Run Keywords  Retry Element Click  xpath=//*[@id='project-results']//clr-dg-cell[contains(.,'${project}')]/a  AND  Wait Until Element Is Visible And Enabled  xpath=//clr-dg-placeholder[contains(.,\"We couldn\'t find any repositories!\")]
-    ...  ELSE  Run Keywords  Retry Element Click  xpath=//*[@id='project-results']//clr-dg-cell[contains(.,'${project}')]/a  AND  Wait Until Element Is Visible And Enabled  xpath=//project-detail//hbr-repository-gridview//clr-dg-cell[contains(.,'${project}/')]
-    Sleep  1
-    Capture Page Screenshot
-
 Add User To Project Admin
     [Arguments]  ${project}  ${user}
     # *** this keyword has not been used ***
