@@ -58,12 +58,12 @@ require (
 	github.com/theupdateframework/notary v0.6.1
 	github.com/vmihailenco/msgpack/v5 v5.0.0-rc.2
 	go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux v0.22.0
-	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.22.0
-	go.opentelemetry.io/otel v1.8.0
+	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.36.4
+	go.opentelemetry.io/otel v1.11.1
 	go.opentelemetry.io/otel/exporters/jaeger v1.0.0
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.3.0
 	go.opentelemetry.io/otel/sdk v1.8.0
-	go.opentelemetry.io/otel/trace v1.8.0
+	go.opentelemetry.io/otel/trace v1.11.1
 	go.uber.org/ratelimit v0.2.0
 	golang.org/x/crypto v0.1.0
 	golang.org/x/net v0.1.0
@@ -121,7 +121,7 @@ require (
 	github.com/docker/go-units v0.4.0 // indirect
 	github.com/emicklei/go-restful/v3 v3.8.0 // indirect
 	github.com/evanphx/json-patch v5.6.0+incompatible // indirect
-	github.com/felixge/httpsnoop v1.0.2 // indirect
+	github.com/felixge/httpsnoop v1.0.3 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/go-errors/errors v1.0.1 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
@@ -201,7 +201,7 @@ require (
 	go.opentelemetry.io/otel/exporters/otlp/internal/retry v1.3.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.3.0 // indirect
 	go.opentelemetry.io/otel/internal/metric v0.22.0 // indirect
-	go.opentelemetry.io/otel/metric v0.22.0 // indirect
+	go.opentelemetry.io/otel/metric v0.33.0 // indirect
 	go.opentelemetry.io/proto/otlp v0.11.0 // indirect
 	go.starlark.net v0.0.0-20200306205701-8dd3e2ee1dd5 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
