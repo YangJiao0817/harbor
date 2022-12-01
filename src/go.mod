@@ -34,7 +34,7 @@ require (
 	github.com/golang-migrate/migrate/v4 v4.15.1
 	github.com/gomodule/redigo v2.0.0+incompatible
 	github.com/google/uuid v1.3.0
-	github.com/gorilla/csrf v1.6.2
+	github.com/gorilla/csrf v1.7.1
 	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
 	github.com/graph-gophers/dataloader v5.0.0+incompatible
