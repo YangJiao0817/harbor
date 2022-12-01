@@ -19,7 +19,7 @@ require (
 	github.com/ghodss/yaml v1.0.0
 	github.com/go-asn1-ber/asn1-ber v1.5.1
 	github.com/go-ldap/ldap/v3 v3.2.4
-	github.com/go-openapi/errors v0.19.6
+	github.com/go-openapi/errors v0.20.3
 	github.com/go-openapi/loads v0.19.5
 	github.com/go-openapi/runtime v0.19.20
 	github.com/go-openapi/spec v0.19.8
