@@ -56,7 +56,7 @@ require (
 	github.com/stretchr/testify v1.8.0
 	github.com/tencentcloud/tencentcloud-sdk-go v1.0.62
 	github.com/theupdateframework/notary v0.6.1
-	github.com/vmihailenco/msgpack/v5 v5.0.0-rc.2
+	github.com/vmihailenco/msgpack/v5 v5.3.5
 	go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux v0.22.0
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.22.0
 	go.opentelemetry.io/otel v1.8.0
@@ -192,6 +192,7 @@ require (
 	github.com/stretchr/objx v0.4.0 // indirect
 	github.com/subosito/gotenv v1.2.0 // indirect
 	github.com/vmihailenco/tagparser v0.1.2 // indirect
+	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f // indirect
 	github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415 // indirect
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect
