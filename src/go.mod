@@ -13,7 +13,7 @@ require (
 	github.com/casbin/casbin v1.9.1
 	github.com/cenkalti/backoff/v4 v4.1.2
 	github.com/coreos/go-oidc/v3 v3.0.0
-	github.com/dghubble/sling v1.1.0
+	github.com/dghubble/sling v1.4.0
 	github.com/docker/distribution v2.8.1+incompatible
 	github.com/docker/libtrust v0.0.0-20160708172513-aabc10ec26b7
 	github.com/ghodss/yaml v1.0.0
@@ -135,7 +135,7 @@ require (
 	github.com/google/btree v1.0.1 // indirect
 	github.com/google/certificate-transparency-go v1.0.21 // indirect
 	github.com/google/gnostic v0.5.7-v3refs // indirect
-	github.com/google/go-querystring v1.0.0 // indirect
+	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 // indirect
 	github.com/gorilla/securecookie v1.1.1 // indirect
