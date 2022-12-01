@@ -59,11 +59,11 @@ require (
 	github.com/vmihailenco/msgpack/v5 v5.0.0-rc.2
 	go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux v0.22.0
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.22.0
-	go.opentelemetry.io/otel v1.8.0
+	go.opentelemetry.io/otel v1.11.1
 	go.opentelemetry.io/otel/exporters/jaeger v1.0.0
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.3.0
 	go.opentelemetry.io/otel/sdk v1.8.0
-	go.opentelemetry.io/otel/trace v1.8.0
+	go.opentelemetry.io/otel/trace v1.11.1
 	go.uber.org/ratelimit v0.2.0
 	golang.org/x/crypto v0.1.0
 	golang.org/x/net v0.1.0
