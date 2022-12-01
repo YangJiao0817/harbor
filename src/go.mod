@@ -38,8 +38,8 @@ require (
 	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
 	github.com/graph-gophers/dataloader v5.0.0+incompatible
-	github.com/jackc/pgconn v1.9.0
-	github.com/jackc/pgx/v4 v4.12.0
+	github.com/jackc/pgconn v1.13.0
+	github.com/jackc/pgx/v4 v4.17.2
 	github.com/jinzhu/gorm v1.9.8 // indirect
 	github.com/jpillora/backoff v1.0.0
 	github.com/miekg/pkcs11 v1.1.1 // indirect
@@ -152,9 +152,9 @@ require (
 	github.com/jackc/pgerrcode v0.0.0-20201024163028-a0d42d470451 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
-	github.com/jackc/pgproto3/v2 v2.1.1 // indirect
+	github.com/jackc/pgproto3/v2 v2.3.1 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20200714003250-2b9c44734f2b // indirect
-	github.com/jackc/pgtype v1.8.0 // indirect
+	github.com/jackc/pgtype v1.12.0 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
