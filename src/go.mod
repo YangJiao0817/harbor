@@ -17,7 +17,7 @@ require (
 	github.com/docker/distribution v2.8.1+incompatible
 	github.com/docker/libtrust v0.0.0-20160708172513-aabc10ec26b7
 	github.com/ghodss/yaml v1.0.0
-	github.com/go-asn1-ber/asn1-ber v1.5.1
+	github.com/go-asn1-ber/asn1-ber v1.5.4
 	github.com/go-ldap/ldap/v3 v3.2.4
 	github.com/go-openapi/errors v0.19.6
 	github.com/go-openapi/loads v0.19.5
