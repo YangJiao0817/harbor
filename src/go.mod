@@ -11,7 +11,7 @@ require (
 	github.com/beego/i18n v0.0.0-20140604031826-e87155e8f0c0
 	github.com/bmatcuk/doublestar v1.1.1
 	github.com/casbin/casbin v1.9.1
-	github.com/cenkalti/backoff/v4 v4.1.2
+	github.com/cenkalti/backoff/v4 v4.1.3
 	github.com/coreos/go-oidc/v3 v3.0.0
 	github.com/dghubble/sling v1.1.0
 	github.com/docker/distribution v2.8.1+incompatible
@@ -59,11 +59,11 @@ require (
 	github.com/vmihailenco/msgpack/v5 v5.0.0-rc.2
 	go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux v0.22.0
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.22.0
-	go.opentelemetry.io/otel v1.8.0
+	go.opentelemetry.io/otel v1.11.1
 	go.opentelemetry.io/otel/exporters/jaeger v1.0.0
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.3.0
-	go.opentelemetry.io/otel/sdk v1.8.0
-	go.opentelemetry.io/otel/trace v1.8.0
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.11.1
+	go.opentelemetry.io/otel/sdk v1.11.1
+	go.opentelemetry.io/otel/trace v1.11.1
 	go.uber.org/ratelimit v0.2.0
 	golang.org/x/crypto v0.1.0
 	golang.org/x/net v0.1.0
@@ -141,6 +141,7 @@ require (
 	github.com/gorilla/securecookie v1.1.1 // indirect
 	github.com/gregjones/httpcache v0.0.0-20180305231024-9cad4c3443a7 // indirect
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0 // indirect
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.7.0 // indirect
 	github.com/h2non/parth v0.0.0-20190131123155-b4df798d6542 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
@@ -198,11 +199,11 @@ require (
 	github.com/xlab/treeprint v1.1.0 // indirect
 	go.mongodb.org/mongo-driver v1.7.0 // indirect
 	go.opentelemetry.io/contrib v0.22.0 // indirect
-	go.opentelemetry.io/otel/exporters/otlp/internal/retry v1.3.0 // indirect
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.3.0 // indirect
+	go.opentelemetry.io/otel/exporters/otlp/internal/retry v1.11.1 // indirect
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.11.1 // indirect
 	go.opentelemetry.io/otel/internal/metric v0.22.0 // indirect
 	go.opentelemetry.io/otel/metric v0.22.0 // indirect
-	go.opentelemetry.io/proto/otlp v0.11.0 // indirect
+	go.opentelemetry.io/proto/otlp v0.19.0 // indirect
 	go.starlark.net v0.0.0-20200306205701-8dd3e2ee1dd5 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4 // indirect
@@ -212,7 +213,7 @@ require (
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/cloud v0.0.0-20151119220103-975617b05ea8 // indirect
 	google.golang.org/genproto v0.0.0-20220502173005-c8bf987b8c21 // indirect
-	google.golang.org/grpc v1.47.0 // indirect
+	google.golang.org/grpc v1.50.1 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/dancannon/gorethink.v3 v3.0.5 // indirect
 	gopkg.in/fatih/pool.v2 v2.0.0 // indirect
