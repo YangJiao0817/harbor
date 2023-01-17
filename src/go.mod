@@ -53,7 +53,7 @@ require (
 	github.com/robfig/cron/v3 v3.0.0
 	github.com/spf13/viper v1.8.1
 	github.com/stretchr/testify v1.8.0
-	github.com/tencentcloud/tencentcloud-sdk-go v1.0.62
+	github.com/tencentcloud/tencentcloud-sdk-go v1.0.581
 	github.com/theupdateframework/notary v0.6.1
 	github.com/vmihailenco/msgpack/v5 v5.0.0-rc.2
 	go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux v0.22.0
