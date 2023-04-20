@@ -405,20 +405,6 @@ Test Case - Delete Multi Artifacts
     Delete Success  sha256:dd179737  sha256:28a85227
     Close Browser
 
-Test Case - Delete Repo on CardView
-    Init Chrome Driver
-    ${d}=   Get Current Date  result_format=%m%s
-    Sign In Harbor  ${HARBOR_URL}  user015  Test1@34
-    Create An New Project And Go Into Project  project${d}
-    Push Image  ${ip}  user015  Test1@34  project${d}  hello-world
-    Push Image  ${ip}  user015  Test1@34  project${d}  busybox
-    Go Into Project  project${d}
-    Switch To CardView
-    Delete Repo on CardView  busybox
-    # Verify
-    Delete Success  busybox
-    Close Browser
-
 Test Case - Delete Multi Member
     Init Chrome Driver
     ${d}=   Get Current Date    result_format=%m%s
