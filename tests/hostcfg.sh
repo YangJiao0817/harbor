@@ -10,7 +10,6 @@ echo "  enabled: true" >> make/harbor.yml
 echo "  dir: /etc/harbor/tls/internal" >> make/harbor.yml
 
 sed "s|# metric:|metric:|" -i make/harbor.yml
-sed "s|#   enabled: false|  enabled: true|" -i make/harbor.yml
 sed "s|#   port: 9090|  port: 9090|" -i make/harbor.yml
 sed "s|#   path: /metrics|  path: /metrics|" -i make/harbor.yml
 
