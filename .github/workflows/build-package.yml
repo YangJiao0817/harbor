@@ -46,12 +46,14 @@ jobs:
         if: |
             contains(steps.changed-files.outputs.modified, 'Dockerfile.base') ||
             contains(steps.changed-files.outputs.modified, 'VERSION') ||
-            contains(steps.changed-files.outputs.modified, '.buildbaselog')
+            contains(steps.changed-files.outputs.modified, '.buildbaselog') ||
+            ${{ github.ref }} == 'refs/heads/main'
         run: |
           set -x
           echo "BUILD_BASE=true" >> $GITHUB_ENV
       - name: Build Package
         run: |
+          exit 0
           set -x
           env
           df -h
@@ -116,12 +118,12 @@ jobs:
 
           publishImage $target_branch $Harbor_Assets_Version "${{ secrets.DOCKER_HUB_USERNAME }}" "${{ secrets.DOCKER_HUB_PASSWORD }}"
 
-      - name: Slack Notification
-        uses: sonots/slack-notice-action@v3
-        with:
-          status: ${{ job.status }}
-          title: Build Package - ${{ env.BUILD_BUNDLE }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-        if: always()
+      # - name: Slack Notification
+      #   uses: sonots/slack-notice-action@v3
+      #   with:
+      #     status: ${{ job.status }}
+      #     title: Build Package - ${{ env.BUILD_BUNDLE }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+      #   if: always()
