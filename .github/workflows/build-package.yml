@@ -42,17 +42,22 @@ jobs:
       - uses: actions/checkout@v3
         with:
           path: src/github.com/goharbor/harbor
+      - name: Debug
+        run: |
+          echo "changed-files: '${{ steps.changed-files.outputs.modified }}'"
+          echo "github.ref: '${{ github.ref }}'"
       - name: Build Base Image
         if: |
             contains(steps.changed-files.outputs.modified, 'Dockerfile.base') ||
             contains(steps.changed-files.outputs.modified, 'VERSION') ||
             contains(steps.changed-files.outputs.modified, '.buildbaselog') ||
-            ${{ github.ref }} == 'refs/heads/main'
+            github.ref == 'refs/heads/main'
         run: |
           set -x
           echo "BUILD_BASE=true" >> $GITHUB_ENV
       - name: Build Package
         run: |
+          echo "github.ref: ${{ github.ref }}"
           exit 0
           set -x
           env
