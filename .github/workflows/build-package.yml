@@ -53,6 +53,7 @@ jobs:
           echo "BUILD_BASE=true" >> $GITHUB_ENV
       - name: Build Package
         run: |
+          echo "github.ref: ${{ github.ref }}"
           exit 0
           set -x
           env
