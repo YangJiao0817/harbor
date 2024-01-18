@@ -62,7 +62,7 @@ require (
 	go.opentelemetry.io/otel/trace v1.21.0
 	go.uber.org/ratelimit v0.2.0
 	golang.org/x/crypto v0.17.0
-	golang.org/x/net v0.17.0
+	golang.org/x/net v0.19.0
 	golang.org/x/oauth2 v0.13.0
 	golang.org/x/sync v0.3.0
 	golang.org/x/text v0.14.0
@@ -70,9 +70,9 @@ require (
 	gopkg.in/h2non/gock.v1 v1.1.2
 	gopkg.in/yaml.v2 v2.4.0
 	helm.sh/helm/v3 v3.11.3
-	k8s.io/api v0.29.0
-	k8s.io/apimachinery v0.29.0
-	k8s.io/client-go v0.29.0
+	k8s.io/api v0.29.1
+	k8s.io/apimachinery v0.29.1
+	k8s.io/client-go v0.29.1
 	sigs.k8s.io/yaml v1.4.0
 )
 
