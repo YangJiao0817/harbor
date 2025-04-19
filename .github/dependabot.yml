@@ -20,6 +20,7 @@ updates:
 
   - package-ecosystem: "gomod"
     directory: "/src"
+    target-branch: "release-2.9.0"
     schedule:
       interval: "weekly"
     labels:
